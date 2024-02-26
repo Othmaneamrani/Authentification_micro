@@ -44,12 +44,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-		    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-test</artifactId>
-      <scope>test</scope>
-    </dependency>
 
     			<dependency>
 			<groupId>org.mapstruct</groupId>
@@ -62,7 +56,10 @@
 			<version>1.4.2.Final</version> 
 			<scope>provided</scope>
 		</dependency>
-    	
+    	    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
 	</dependencies>
 
 	<build>

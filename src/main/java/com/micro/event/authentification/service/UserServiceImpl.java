@@ -2,6 +2,7 @@ package com.micro.event.authentification.service;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.micro.event.authentification.command.UserCommand;
@@ -20,6 +21,7 @@ public class UserServiceImpl implements IUserService {
 	
 	private IUserRepository iUserRepository;
 	private IUserMapper iUserMapper;
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public List<UserRepresentation> getAllUsers() {
@@ -30,6 +32,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public UserRepresentation createUser(UserCommand userCommand) {
 		User user = iUserMapper.convertCommandToEntity(userCommand);
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		iUserRepository.save(user);
 		return iUserMapper.convertEntityToRepresentation(user);
 	}
@@ -37,6 +40,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public UserRepresentation updateUser(UserCommand userCommand) {
 		User user = iUserMapper.convertCommandToEntity(userCommand);
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		iUserRepository.save(user);
 		return iUserMapper.convertEntityToRepresentation(user);
 	}
